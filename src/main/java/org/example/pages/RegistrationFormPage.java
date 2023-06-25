@@ -1,6 +1,5 @@
 package org.example.pages;
 
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,37 +7,59 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class RegistrationFormPage {
-    @FindBy(id = "firstName")
-    private WebElement firstNameField;
-    @FindBy(xpath = "//input[@placeholder='Last Name']")
-    private WebElement lastNameField;
-    @FindBy(xpath = "//label[@for=\"gender-radio-1\"]")
-    private WebElement maleRadioButton;
-    @FindBy(xpath = "//input[@placeholder='Mobile Number']")
-    private WebElement mobileNumberField;
-    @FindBy(xpath = "//button[@type='submit']")
-    private WebElement submitButton;
-    @FindBy(xpath = "//tr[1]/td[1]/following-sibling::td")
-    WebElement userDataText;
+
+    @FindBy(xpath = "//span[@class='icon icon__person']")
+    private WebElement commonRegisterFormButton;
+    @FindBy(xpath = "//button[@value='REGISTER']")
+    private WebElement registerFormButton;
+    @FindBy(xpath = "//div[@style=\"opacity: 1;\"]//input[@placeholder='+375 (__) ___-__-__']")
+    private WebElement mobileForRegisterField;
+    @FindBy(xpath = "//div[@style=\"opacity: 1;\"]//span[contains(@class, 'checkbox-visual')]")
+    private WebElement checkboxForRegister;
+    @FindBy(xpath = "//div[@style=\"opacity: 1;\"]//button[@name='SET_REGISTER']")
+    private WebElement registerButton;
+    @FindBy(xpath = "//div[@style=\"opacity: 1;\"]//p[contains(text(), 'уже зарегистрирован')]")
+    WebElement errorAlreadyText;
+
     public RegistrationFormPage(WebDriver driver, WebDriverWait wait) {
         PageFactory.initElements(driver, this);
     }
-    public void enterFirstName(String firstName) {
-        firstNameField.sendKeys(firstName);
+    public void clickCommonRegFormButton() {
+        commonRegisterFormButton.click();
     }
-    public void enterLastName(String lastName) {
-        lastNameField.sendKeys(lastName);
-    }
-    public void clickMaleRadioButton() {
-        maleRadioButton.click();
+    public void clickRegFormButton() {
+        registerFormButton.click();
     }
     public void enterMobileNumber(String mobileNumber) {
-        mobileNumberField.sendKeys(mobileNumber);
+        mobileForRegisterField.sendKeys(mobileNumber);
     }
-    public void clickSubmitButton() {
-        submitButton.sendKeys(Keys.RETURN);
+    public void setRegisterCheckbox() {
+        checkboxForRegister.click();
     }
-    public String getUserDataText() {
-        return userDataText.getText();
+    public void clickRegisterButton() {
+        registerButton.click();
     }
+    public String getErrorAlreadyText() {
+        return errorAlreadyText.getText();
+    }
+
+
+//    public void enterFirstName(String firstName) {
+//        firstNameField.sendKeys(firstName);
+//    }
+//
+//    public void enterLastName(String lastName) {
+//        lastNameField.sendKeys(lastName);
+//    }
+//
+//    public void clickMaleRadioButton() {
+//        maleRadioButton.click();
+//    }
+//
+//
+//    public void clickSubmitButton() {
+//        submitButton.sendKeys(Keys.RETURN);
+//    }
+//
+
 }

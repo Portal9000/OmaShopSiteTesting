@@ -18,18 +18,17 @@ public class FormTest {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-        driver.get("https://demoqa.com/automation-practice-form");
+        driver.get("https://www.oma.by/");
         registrationFormPage = new RegistrationFormPage(driver, wait);
     }
 
     @Test
     public void checkRegistrationFormData() {
-        registrationFormPage.enterFirstName("Sasha");
-        registrationFormPage.enterLastName("Zin");
-        registrationFormPage.clickMaleRadioButton();
-        registrationFormPage.enterMobileNumber("1234567890");
-        registrationFormPage.clickSubmitButton();
-        Assert.assertTrue(registrationFormPage.getUserDataText().contains("Sasha Zin"));
-
+        registrationFormPage.clickCommonRegFormButton();
+        registrationFormPage.clickRegFormButton();
+        registrationFormPage.enterMobileNumber("293305742");
+        registrationFormPage.setRegisterCheckbox();
+        registrationFormPage.clickRegisterButton();
+        Assert.assertTrue(registrationFormPage.getErrorAlreadyText().contains("уже зарегистрирован"));
     }
 }
