@@ -1,5 +1,6 @@
 package org.example.pages;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,19 +19,30 @@ public class RegistrationFormPage {
     private WebElement checkboxForRegister;
     @FindBy(xpath = "//div[@style=\"opacity: 1;\"]//button[@name='SET_REGISTER']")
     private WebElement registerButton;
-    @FindBy(xpath = "//div[@style=\"opacity: 1;\"]//p[contains(text(), 'уже зарегистрирован')]")
+    @FindBy(xpath = "//div[@style=\"opacity: 1;\"]//p[contains(text(), 'уже заре')]")
     WebElement errorAlreadyText;
+
+    @FindBy(xpath = "//input[@placeholder='+375 (__) ___-__-__']")
+    private WebElement mobileForLoginField;
+    @FindBy(xpath = "//input[@name='PASSWORD']")
+    private WebElement passwordForLoginField;
+    @FindBy(xpath = "//span[@class=\"checkbox-visual_icon icon icon__check\"]")
+    private WebElement checkboxForLogin;
+    @FindBy(xpath = "//button[@name=\"SET_LOGIN\"]")
+    private WebElement loginButton;
+    @FindBy(xpath = "//div[@style=\"opacity: 1;\"]//p[contains(text(), 'Неверный')]")
+    WebElement errorWrongText;
+    @FindBy(xpath = "//h2[@class=\"personal-user_name\"]")
+    WebElement accountOwnerNameText;
 
     public RegistrationFormPage(WebDriver driver, WebDriverWait wait) {
         PageFactory.initElements(driver, this);
     }
-    public void clickCommonRegFormButton() {
-        commonRegisterFormButton.click();
-    }
+    public void clickCommonRegFormButton() { commonRegisterFormButton.click(); }
     public void clickRegFormButton() {
-        registerFormButton.click();
+        registerFormButton.sendKeys(Keys.RETURN);
     }
-    public void enterMobileNumber(String mobileNumber) {
+    public void enterRegMobileNumber(String mobileNumber) {
         mobileForRegisterField.sendKeys(mobileNumber);
     }
     public void setRegisterCheckbox() {
@@ -43,23 +55,25 @@ public class RegistrationFormPage {
         return errorAlreadyText.getText();
     }
 
+    public void enterLogMobileNumber(String mobileNumber) {
+        mobileForLoginField.sendKeys(mobileNumber);
+    }
+    public void enterLogPassword(String password) {
+        passwordForLoginField.sendKeys(password);
+    }
+    public void setLoginCheckbox() {
+        checkboxForLogin.click();
+    }
+    public void clickLoginButton() {
+        loginButton.click();
+    }
+    public String getErrorWrongText() {
+        return errorWrongText.getText();
+    }
 
-//    public void enterFirstName(String firstName) {
-//        firstNameField.sendKeys(firstName);
-//    }
-//
-//    public void enterLastName(String lastName) {
-//        lastNameField.sendKeys(lastName);
-//    }
-//
-//    public void clickMaleRadioButton() {
-//        maleRadioButton.click();
-//    }
-//
-//
-//    public void clickSubmitButton() {
-//        submitButton.sendKeys(Keys.RETURN);
-//    }
-//
+    public String getaccountOwnerNameTextText() {
+        return accountOwnerNameText.getText();
+    }
+
 
 }

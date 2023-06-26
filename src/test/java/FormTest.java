@@ -23,12 +23,34 @@ public class FormTest {
     }
 
     @Test
-    public void checkRegistrationFormData() {
+    public void checkRegistrationFormData() throws InterruptedException {
         registrationFormPage.clickCommonRegFormButton();
         registrationFormPage.clickRegFormButton();
-        registrationFormPage.enterMobileNumber("293305742");
+        Thread.sleep(3000);
+        registrationFormPage.enterRegMobileNumber("293305742");
         registrationFormPage.setRegisterCheckbox();
         registrationFormPage.clickRegisterButton();
+        Thread.sleep(3000);
         Assert.assertTrue(registrationFormPage.getErrorAlreadyText().contains("уже зарегистрирован"));
+    }
+    @Test
+    public void checkWrongLoginFormData() throws InterruptedException {
+        registrationFormPage.clickCommonRegFormButton();
+        registrationFormPage.enterLogMobileNumber("293305742");
+        registrationFormPage.enterLogPassword("aaa");
+        registrationFormPage.setLoginCheckbox();
+        registrationFormPage.clickLoginButton();
+        Thread.sleep(3000);
+        Assert.assertTrue(registrationFormPage.getErrorWrongText().contains("Неверный"));
+    }
+    @Test
+    public void checkTrueLoginFormData() throws InterruptedException {
+        registrationFormPage.clickCommonRegFormButton();
+        registrationFormPage.enterLogMobileNumber("293305742");
+        registrationFormPage.enterLogPassword("c114b9b2");
+        registrationFormPage.setLoginCheckbox();
+        registrationFormPage.clickLoginButton();
+        Thread.sleep(3000);
+        Assert.assertTrue(registrationFormPage.getaccountOwnerNameTextText().contains("Зинчук Александр Борисович"));
     }
 }
