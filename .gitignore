@@ -5,6 +5,9 @@
 /.idea/
 .idea/*
 
+/build/
+build/*
+
 # Log file
 *.log
 
@@ -38,3 +41,4 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
+/allure-results/

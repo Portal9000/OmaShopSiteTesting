@@ -8,7 +8,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import java.time.Duration;
 
-public class FormTest {
+public class RegistrationFormTest {
+
     private RegistrationFormPage registrationFormPage;
     private WebDriver driver;
     private WebDriverWait wait;
@@ -32,25 +33,5 @@ public class FormTest {
         registrationFormPage.clickRegisterButton();
         Thread.sleep(3000);
         Assert.assertTrue(registrationFormPage.getErrorAlreadyText().contains("уже зарегистрирован"));
-    }
-    @Test
-    public void checkWrongLoginFormData() throws InterruptedException {
-        registrationFormPage.clickCommonRegFormButton();
-        registrationFormPage.enterLogMobileNumber("293305742");
-        registrationFormPage.enterLogPassword("aaa");
-        registrationFormPage.setLoginCheckbox();
-        registrationFormPage.clickLoginButton();
-        Thread.sleep(3000);
-        Assert.assertTrue(registrationFormPage.getErrorWrongText().contains("Неверный"));
-    }
-    @Test
-    public void checkTrueLoginFormData() throws InterruptedException {
-        registrationFormPage.clickCommonRegFormButton();
-        registrationFormPage.enterLogMobileNumber("293305742");
-        registrationFormPage.enterLogPassword("c114b9b2");
-        registrationFormPage.setLoginCheckbox();
-        registrationFormPage.clickLoginButton();
-        Thread.sleep(3000);
-        Assert.assertTrue(registrationFormPage.getaccountOwnerNameTextText().contains("Зинчук Александр Борисович"));
     }
 }

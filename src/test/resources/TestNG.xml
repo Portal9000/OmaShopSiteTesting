@@ -2,13 +2,26 @@
 <suite name="MainTest">
     <test name="FormTest" parallel="false">
         <classes>
-            <class name="FormTest">
+            <class name="RegistrationFormTest">
                 <methods>
                     <include name="checkRegistrationFormData"/>
-                    <include name="checkWrongLoginFormData"/>
-                    <include name="checkTrueLoginFormData"/>
+                    <include name="checkRegistrationFormSeparateData"/>
                 </methods>
             </class>
         </classes>
     </test>
 </suite>
+
+<!--
+            <class name="FormTest">
+                <methods>
+                    <include name="checkRegistrationFormData"/>
+                    <include name="checkRegistrationFormSeparateData"/>
+                </methods>
+            </class>
+            <class name="FormChainTest">
+                <methods>
+                    <include name="checkRegistrationFormDataChain"/>
+                </methods>
+            </class>
+-->
