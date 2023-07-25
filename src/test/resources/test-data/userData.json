@@ -1,12 +1,14 @@
 [
   {
-    "firstName": "c114b9b2",
-    "lastName": "Ivanov",
-    "mobileNumber": "293305742"
+    "mobileNumber": "293305742",
+    "password": "12345678"
   },
   {
-    "firstName": "12345678",
-    "lastName": "Ivanova",
-    "mobileNumber": "293305742"
+    "mobileNumber": "293305742",
+    "password": "c114b9b2"
+  },
+  {
+    "mobileNumber": "293305742",
+    "password": "c114b9b2"
   }
 ]

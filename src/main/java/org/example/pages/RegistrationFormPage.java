@@ -1,16 +1,15 @@
 package org.example.pages;
 
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class RegistrationFormPage {
+public class RegistrationFormPage extends BasePage {
+
+    protected WebDriver driver;
 
     @FindBy(xpath = "//span[@class='icon icon__person']")
-    private WebElement commonRegisterFormButton;
+    private WebElement signInFormButton;
     @FindBy(xpath = "//button[@value='REGISTER']")
     private WebElement registerFormButton;
     @FindBy(xpath = "//div[@style=\"opacity: 1;\"]//input[@placeholder='+375 (__) ___-__-__']")
@@ -22,45 +21,25 @@ public class RegistrationFormPage {
     @FindBy(xpath = "//div[@style=\"opacity: 1;\"]//p[contains(text(), 'уже заре')]")
     WebElement errorAlreadyText;
 
-
-    public RegistrationFormPage(WebDriver driver, WebDriverWait wait) {
-        PageFactory.initElements(driver, this);
+    public RegistrationFormPage(WebDriver driver) {
+        super(driver);
     }
-    public void clickCommonRegFormButton() { commonRegisterFormButton.click(); }
-    public void clickRegFormButton() {
-        registerFormButton.sendKeys(Keys.RETURN);
+    public WebElement getSignInFormButton() {
+        return signInFormButton;
     }
-    public void enterRegMobileNumber(String mobileNumber) {
-        mobileForRegisterField.sendKeys(mobileNumber);
+    public WebElement getRegFormButton() {
+        return registerFormButton;
     }
-    public void setRegisterCheckbox() {
-        checkboxForRegister.click();
+    public WebElement getRegMobileNumber() {
+        return mobileForRegisterField;
     }
-    public void clickRegisterButton() {
-        registerButton.click();
+    public WebElement getRegisterCheckbox() {
+        return checkboxForRegister;
     }
-    public String getErrorAlreadyText() {
-        return errorAlreadyText.getText();
+    public WebElement getRegisterButton() {
+        return registerButton;
     }
-
-    public void enterLogMobileNumber(String mobileNumber) {
-        mobileForLoginField.sendKeys(mobileNumber);
+    public WebElement getErrorAlreadyText() {
+        return errorAlreadyText;
     }
-    public void enterLogPassword(String password) {
-        passwordForLoginField.sendKeys(password);
-    }
-    public void setLoginCheckbox() {
-        checkboxForLogin.click();
-    }
-    public void clickLoginButton() {
-        loginButton.click();
-    }
-    public String getErrorWrongText() {
-        return errorWrongText.getText();
-    }
-    public String getaccountOwnerNameTextText() {
-        return accountOwnerNameText.getText();
-    }
-
-
 }

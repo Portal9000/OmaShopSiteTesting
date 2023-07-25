@@ -2,11 +2,11 @@ package org.example.steps;
 
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
-import org.example.models.UserData;
 import org.example.pages.RegistrationFormPage;
 import org.example.utils.Waiters;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 
 @Log4j2
 public class RegistrationFormSteps {
@@ -16,50 +16,27 @@ public class RegistrationFormSteps {
     public RegistrationFormSteps(WebDriver driver) {
         registrationFormPage = new RegistrationFormPage(driver);
     }
-    @Step("Enter first name")
-    public void enterFirstName(String firstName) {
-        Waiters.waitForVisibility(registrationFormPage.getFirstNameField());
-        log.info("Enter first name");
-        registrationFormPage.getFirstNameField().sendKeys(firstName);
-    }
-    @Step("Enter last name")
-    public void enterLastName(String lastName) {
-        log.info("Enter last name");
-        registrationFormPage.getLastNameField().sendKeys(lastName);
-    }
-    @Step("Click male radio button")
-    public void clickMaleRadioButton() {
-        log.info("Click male radio button");
-        registrationFormPage.getMaleRadioButton().click();
-    }
-    @Step("Enter mobile number")
-    public void enterMobileNumber(String mobileNumber) {
-        log.info("Enter mobile number");
-        registrationFormPage.getMobileNumberField().sendKeys(mobileNumber);
-    }
-    @Step("Click submit button")
-    public void clickSubmitButton() {
-        log.info("Click submit button");
-        registrationFormPage.getSubmitButton().sendKeys(Keys.RETURN);  // click();
-    }
+
     @Step("Get user data text")
-    public String getUserDataText() {
+    public String getErrorAlreadyText() {
         log.info("Get user data text");
-        return registrationFormPage.getUserDataText().getText();
+        return registrationFormPage.getErrorAlreadyText().getText();
     }
 
-    @Step("Fill user form")
-    public void fillForm(UserData userData) {
-        Waiters.waitForVisibility(registrationFormPage.getFirstNameField());
-        log.info("Enter first name");
-        registrationFormPage.getFirstNameField().sendKeys(userData.getFirstName());
-        log.info("Enter last name");
-        registrationFormPage.getLastNameField().sendKeys(userData.getLastName());
-        log.info("Click male radio button");
-        registrationFormPage.getMaleRadioButton().click();
-        log.info("Enter mobile number");
-        registrationFormPage.getMobileNumberField().sendKeys(userData.getMobileNumber());
-        log.info("Click submit button");
-        registrationFormPage.getSubmitButton().sendKeys(Keys.RETURN);   //click();
+    @Step("Fill register form")
+    public void fillRegisterForm() throws InterruptedException {                   //TODO Убрать эксепшн после удаления sleep
+        Waiters.waitForVisibility(registrationFormPage.getSignInFormButton());
+        log.info("Wait for visibility SignIn button");
+        registrationFormPage.getSignInFormButton().click();
+        log.info("Enter SignIn button");
+        registrationFormPage.getRegFormButton().sendKeys(Keys.RETURN);            //TODO Click()
+        log.info("Enter button for registration");
+        Thread.sleep(3000);
+        registrationFormPage.getRegMobileNumber().sendKeys("293305742");
+        log.info("Enter already registered mobile number");
+        registrationFormPage.getRegisterCheckbox().click();
+        log.info("Set check-box for registration");
+        registrationFormPage.getRegisterButton().click();
+        log.info("Click Register button");
     }
 }

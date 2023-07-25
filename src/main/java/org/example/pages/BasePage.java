@@ -1,6 +1,5 @@
 package org.example.pages;
 
-import org.example.driver.DriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 

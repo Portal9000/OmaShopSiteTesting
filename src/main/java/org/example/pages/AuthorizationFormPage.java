@@ -7,8 +7,12 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class AuthorizationFormPage {
+public class AuthorizationFormPage extends BasePage {
 
+    protected WebDriver driver;
+
+    @FindBy(xpath = "//span[@class='icon icon__person']")
+    private WebElement signInFormButton;
     @FindBy(xpath = "//input[@placeholder='+375 (__) ___-__-__']")
     private WebElement mobileForLoginField;
     @FindBy(xpath = "//input[@name='PASSWORD']")
@@ -22,44 +26,28 @@ public class AuthorizationFormPage {
     @FindBy(xpath = "//h2[@class=\"personal-user_name\"]")
     WebElement accountOwnerNameText;
 
-    public AuthorizationFormPage(WebDriver driver, WebDriverWait wait) {
-        PageFactory.initElements(driver, this);
+    public AuthorizationFormPage(WebDriver driver) {
+        super(driver);
     }
-    public void clickCommonRegFormButton() { commonRegisterFormButton.click(); }
-    public void clickRegFormButton() {
-        registerFormButton.sendKeys(Keys.RETURN);
+    public WebElement getSignInFormButton() {
+        return signInFormButton;
     }
-    public void enterRegMobileNumber(String mobileNumber) {
-        mobileForRegisterField.sendKeys(mobileNumber);
+    public WebElement getLoginMobileNumber() {
+        return mobileForLoginField;
     }
-    public void setRegisterCheckbox() {
-        checkboxForRegister.click();
+    public WebElement getLoginPassword() {
+        return passwordForLoginField;
     }
-    public void clickRegisterButton() {
-        registerButton.click();
+    public WebElement getLoginCheckbox() {
+        return checkboxForLogin;
     }
-    public String getErrorAlreadyText() {
-        return errorAlreadyText.getText();
+    public WebElement getLoginButton() {
+        return loginButton;
     }
-
-    public void enterLogMobileNumber(String mobileNumber) {
-        mobileForLoginField.sendKeys(mobileNumber);
+    public WebElement getErrorWrongText() {
+        return errorWrongText;
     }
-    public void enterLogPassword(String password) {
-        passwordForLoginField.sendKeys(password);
+    public WebElement getAccountOwnerNameTextText() {
+        return accountOwnerNameText;
     }
-    public void setLoginCheckbox() {
-        checkboxForLogin.click();
-    }
-    public void clickLoginButton() {
-        loginButton.click();
-    }
-    public String getErrorWrongText() {
-        return errorWrongText.getText();
-    }
-    public String getaccountOwnerNameTextText() {
-        return accountOwnerNameText.getText();
-    }
-
-
 }

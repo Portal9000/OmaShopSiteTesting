@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UserData {
 
-    String firstName;
-    String lastName;
     String mobileNumber;
+    String password;
 }

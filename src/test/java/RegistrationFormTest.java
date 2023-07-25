@@ -1,37 +1,26 @@
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.example.pages.RegistrationFormPage;
+import org.example.driver.DriverManager;
+import org.example.steps.RegistrationFormSteps;
+import org.example.utils.AllureListener;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import java.time.Duration;
 
-public class RegistrationFormTest {
+@Listeners({AllureListener.class})
+public class RegistrationFormTest extends BaseTest {
 
-    private RegistrationFormPage registrationFormPage;
-    private WebDriver driver;
-    private WebDriverWait wait;
-    @BeforeMethod
-    public void setUp() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-        driver.get("https://www.oma.by/");
-        registrationFormPage = new RegistrationFormPage(driver, wait);
+    protected WebDriver driver;
+    private RegistrationFormSteps registrationFormSteps;
+
+    @BeforeClass
+    public void preparationForTest() {
+        driver = DriverManager.getDriver();
+        registrationFormSteps = new RegistrationFormSteps(driver);
     }
-
-    @Test
+    @Test(description = "Check registration form data")
     public void checkRegistrationFormData() throws InterruptedException {
-        registrationFormPage.clickCommonRegFormButton();
-        registrationFormPage.clickRegFormButton();
-        Thread.sleep(3000);
-        registrationFormPage.enterRegMobileNumber("293305742");
-        registrationFormPage.setRegisterCheckbox();
-        registrationFormPage.clickRegisterButton();
-        Thread.sleep(3000);
-        Assert.assertTrue(registrationFormPage.getErrorAlreadyText().contains("уже зарегистрирован"));
+        registrationFormSteps.fillRegisterForm();
+        Assert.assertTrue(registrationFormSteps.getErrorAlreadyText().contains("уже зарегистрирован"));
     }
 }

@@ -1,56 +1,34 @@
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.example.pages.RegistrationFormPage;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Link;
+import io.qameta.allure.Story;
+import org.example.driver.DriverManager;
+import org.example.models.UserData;
+import org.example.steps.RegistrationFormSteps;
+import org.example.utils.AllureListener;
+import org.example.utils.JsonReader;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import java.time.Duration;
 
-public class AuthorizationFormTest {
+@Listeners({AllureListener.class})
+public class AuthorizationFormTest extends BaseTest {
 
-    private AuthorizationFormPage authorizationFormPage;
-    private WebDriver driver;
-    private WebDriverWait wait;
-    @BeforeMethod
-    public void setUp() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-        driver.get("https://www.oma.by/");
-        authorizationFormPage = new AuthorizationFormPage(driver, wait);
+    protected WebDriver driver;
+    private AuthorizationFormSteps authorizationFormSteps;
+
+    @BeforeClass
+    public void preparationForTest() {
+        driver = DriverManager.getDriver();
+        authorizationFormSteps = new AuthorizationFormSteps(driver);
     }
 
-    @Test
-    public void checkWrongLoginFormData() throws InterruptedException {
-        authorizationFormPage.clickCommonRegFormButton();
-        authorizationFormPage.enterLogMobileNumber("293305742");
-        authorizationFormPage.enterLogPassword("aaa");
-        authorizationFormPage.setLoginCheckbox();
-        authorizationFormPage.clickLoginButton();
-        Thread.sleep(3000);
-        Assert.assertTrue(authorizationFormPage.getErrorWrongText().contains("Неверный"));
-    }
-    @Test
-    public void checkTrueLoginFormData() throws InterruptedException {
-        authorizationFormPage.clickCommonRegFormButton();
-        authorizationFormPage.enterLogMobileNumber("293305742");
-        authorizationFormPage.enterLogPassword("c114b9b2");
-        authorizationFormPage.setLoginCheckbox();
-        authorizationFormPage.clickLoginButton();
-        Thread.sleep(3000);
-        Assert.assertTrue(authorizationFormPage.getaccountOwnerNameTextText().contains("Зинчук Александр Борисович"));
-    }
-    @Test
-    public void checkWrongNameFormData() throws InterruptedException {
-        authorizationFormPage.clickCommonRegFormButton();
-        authorizationFormPage.enterLogMobileNumber("293305742");
-        authorizationFormPage.enterLogPassword("c114b9b2");
-        authorizationFormPage.setLoginCheckbox();
-        authorizationFormPage.clickLoginButton();
-        Thread.sleep(3000);
-        Assert.assertTrue(authorizationFormPage.getaccountOwnerNameTextText().contains("Миша Джексон"));
+    @Test(description = "Check registration form data", dataProvider = "userData", dataProviderClass = JsonReader.class)
+    public void checkRegistrationFormData(UserData userData) {
+        authorizationFormSteps.fillForm(userData);
+//        Assert.assertTrue(registrationFormSteps.getUserDataText().contains("Ivanov"));
+        Assert.assertTrue(authorizationFormSteps.getUserDataText().contains(userData.getFirstName()));
     }
 }
