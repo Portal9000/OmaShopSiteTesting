@@ -4,6 +4,7 @@ import io.qameta.allure.Link;
 import io.qameta.allure.Story;
 import org.example.driver.DriverManager;
 import org.example.models.UserData;
+import org.example.steps.AuthorizationFormSteps;
 import org.example.steps.RegistrationFormSteps;
 import org.example.utils.AllureListener;
 import org.example.utils.JsonReader;
@@ -25,10 +26,21 @@ public class AuthorizationFormTest extends BaseTest {
         authorizationFormSteps = new AuthorizationFormSteps(driver);
     }
 
-    @Test(description = "Check registration form data", dataProvider = "userData", dataProviderClass = JsonReader.class)
-    public void checkRegistrationFormData(UserData userData) {
-        authorizationFormSteps.fillForm(userData);
-//        Assert.assertTrue(registrationFormSteps.getUserDataText().contains("Ivanov"));
-        Assert.assertTrue(authorizationFormSteps.getUserDataText().contains(userData.getFirstName()));
+    @Test(description = "Check registration form data - wrong password")
+    public void checkAuthorizationWithWrongPass() {
+        authorizationFormSteps.checkWrongPassFormData();
+        Assert.assertTrue(authorizationFormSteps.getErrorWrongPasswordText().contains("Неверный"));
+    }
+
+    @Test(description = "Check registration form data - correct account owner name")
+    public void checkTrueLoginFormData() {
+        authorizationFormSteps.checkTrueLoginFormData();
+        Assert.assertTrue(authorizationFormSteps.getAccountOwnerName().contains("Зинчук Александр Борисович"));
+    }
+
+    @Test(description = "Check registration form data - wrong account owner name")
+    public void checkWrongNameFormData() {
+        authorizationFormSteps.checkWrongNameFormData();
+        Assert.assertTrue(authorizationFormSteps.getAccountOwnerName().contains("Миша Джексон"));
     }
 }

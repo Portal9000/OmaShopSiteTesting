@@ -5,9 +5,7 @@ package org.example.steps;
         import org.example.models.UserData;
         import org.example.pages.AuthorizationFormPage;
         import org.example.utils.Waiters;
-        import org.openqa.selenium.Keys;
         import org.openqa.selenium.WebDriver;
-        import org.testng.Assert;
         import org.testng.annotations.Test;
 
 @Log4j2
@@ -19,34 +17,42 @@ public class AuthorizationFormSteps {
         authorizationFormPage = new AuthorizationFormPage(driver);
     }
     @Test(description = "Check wrong login form data")
-    public void checkWrongLoginFormData() throws InterruptedException {
+    public void checkWrongPassFormData() {
         Waiters.waitForVisibility(authorizationFormPage.getSignInFormButton());
-        authorizationFormPage.getLoginMobileNumber("293305742");
-        authorizationFormPage.getLoginPassword("aaa");
+        authorizationFormPage.getSignInFormButton().click();
+        authorizationFormPage.getLoginMobileNumber().sendKeys("293305742");
+        authorizationFormPage.getLoginPassword().sendKeys("aaa");
         authorizationFormPage.getLoginCheckbox().click();
         authorizationFormPage.getLoginButton().click();
-        Thread.sleep(3000);
-        Assert.assertTrue(authorizationFormPage.getErrorWrongText().contains("Неверный"));
     }
     @Test(description = "Check true login form data")
-    public void checkTrueLoginFormData() throws InterruptedException {
+    public void checkTrueLoginFormData() {
         Waiters.waitForVisibility(authorizationFormPage.getSignInFormButton());
-        authorizationFormPage.getLoginMobileNumber("293305742");
-        authorizationFormPage.getLoginPassword("c114b9b2");
+        authorizationFormPage.getSignInFormButton().click();
+        authorizationFormPage.getLoginMobileNumber().sendKeys("293305742");
+        authorizationFormPage.getLoginPassword().sendKeys("c114b9b2");
         authorizationFormPage.getLoginCheckbox().click();
         authorizationFormPage.getLoginButton().click();
-        Thread.sleep(3000);
-        Assert.assertTrue(authorizationFormPage.getaccountOwnerNameText().contains("Зинчук Александр Борисович"));
     }
     @Test(description = "Check wrong name form data")
-    public void checkWrongNameFormData() throws InterruptedException {
+    public void checkWrongNameFormData() {
         Waiters.waitForVisibility(authorizationFormPage.getSignInFormButton());
-        authorizationFormPage.getLoginMobileNumber("293305742");
-        authorizationFormPage.getLoginPassword("c114b9b2");
+        authorizationFormPage.getSignInFormButton().click();
+        authorizationFormPage.getLoginMobileNumber().sendKeys("293305742");
+        authorizationFormPage.getLoginPassword().sendKeys("c114b9b2");
         authorizationFormPage.getLoginCheckbox().click();
         authorizationFormPage.getLoginButton().click();
-        Thread.sleep(3000);
-        Assert.assertTrue(authorizationFormPage.getaccountOwnerNameText().contains("Миша Джексон"));
     }
+
+    @Step("Get error password text")
+    public String getErrorWrongPasswordText() {
+        log.info("Get error password text");
+        return authorizationFormPage.getErrorWrongPasswordText().getText();
+    }
+
+    @Step("Get account owner name")
+    public String getAccountOwnerName() {
+        log.info("Get account owner name");
+        return authorizationFormPage.getAccountOwnerName().getText();
     }
 }

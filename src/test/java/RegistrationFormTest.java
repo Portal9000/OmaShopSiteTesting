@@ -18,9 +18,10 @@ public class RegistrationFormTest extends BaseTest {
         driver = DriverManager.getDriver();
         registrationFormSteps = new RegistrationFormSteps(driver);
     }
-    @Test(description = "Check registration form data")
+    @Test(description = "Check registration form data - already registrated")
     public void checkRegistrationFormData() throws InterruptedException {
         registrationFormSteps.fillRegisterForm();
+        Thread.sleep(3000);
         Assert.assertTrue(registrationFormSteps.getErrorAlreadyText().contains("уже зарегистрирован"));
     }
 }

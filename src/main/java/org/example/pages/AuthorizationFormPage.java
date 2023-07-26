@@ -1,11 +1,8 @@
 package org.example.pages;
 
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AuthorizationFormPage extends BasePage {
 
@@ -22,9 +19,9 @@ public class AuthorizationFormPage extends BasePage {
     @FindBy(xpath = "//button[@name=\"SET_LOGIN\"]")
     private WebElement loginButton;
     @FindBy(xpath = "//div[@style=\"opacity: 1;\"]//p[contains(text(), 'Неверный')]")
-    WebElement errorWrongText;
+    WebElement errorWrongPasswordText;
     @FindBy(xpath = "//h2[@class=\"personal-user_name\"]")
-    WebElement accountOwnerNameText;
+    WebElement accountOwnerName;
 
     public AuthorizationFormPage(WebDriver driver) {
         super(driver);
@@ -44,10 +41,10 @@ public class AuthorizationFormPage extends BasePage {
     public WebElement getLoginButton() {
         return loginButton;
     }
-    public WebElement getErrorWrongText() {
-        return errorWrongText;
+    public WebElement getErrorWrongPasswordText() {
+        return errorWrongPasswordText;
     }
-    public WebElement getAccountOwnerNameTextText() {
-        return accountOwnerNameText;
+    public WebElement getAccountOwnerName() {
+        return accountOwnerName;
     }
 }

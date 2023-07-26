@@ -4,19 +4,19 @@
     <test name="SignInTest" parallel="false">
         <classes>
 
-            <class name="RegistrationFormTest">
-                <methods>
-                    <include name="checkRegistrationFormData"/>
-                </methods>
-            </class>
-
-<!--            <class name="AuthorizationFormTest">-->
+<!--            <class name="RegistrationFormTest">-->
 <!--                <methods>-->
-<!--                    <include name="checkWrongLoginFormData"/>-->
-<!--                    <include name="checkTrueLoginFormData"/>-->
-<!--                    <include name="checkWrongNameFormData"/>-->
+<!--                    <include name="checkRegistrationFormData"/>-->
 <!--                </methods>-->
 <!--            </class>-->
+
+            <class name="AuthorizationFormTest">
+                <methods>
+                    <include name="checkAuthorizationWithWrongPass"/>
+                    <include name="checkTrueLoginFormData"/>
+                    <include name="checkWrongNameFormData"/>
+                </methods>
+            </class>
 
         </classes>
     </test>
