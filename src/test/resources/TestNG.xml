@@ -10,11 +10,17 @@
 <!--                </methods>-->
 <!--            </class>-->
 
-            <class name="AuthorizationFormTest">
+<!--            <class name="AuthorizationFormTest">-->
+<!--                <methods>-->
+<!--                    <include name="checkAuthorizationWithWrongPass"/>-->
+<!--                    <include name="checkTrueLoginFormData"/>-->
+<!--                    <include name="checkWrongNameFormData"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+
+            <class name="SendItemToCartTest">
                 <methods>
-                    <include name="checkAuthorizationWithWrongPass"/>
-                    <include name="checkTrueLoginFormData"/>
-                    <include name="checkWrongNameFormData"/>
+                    <include name="presenceGoodsInCart"/>
                 </methods>
             </class>
 
