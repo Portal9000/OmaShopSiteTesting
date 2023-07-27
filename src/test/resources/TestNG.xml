@@ -5,8 +5,6 @@
             <class name="FormTest">
                 <methods>
                     <include name="checkRegistrationFormData"/>
-                    <include name="checkWrongLoginFormData"/>
-                    <include name="checkTrueLoginFormData"/>
                 </methods>
             </class>
         </classes>

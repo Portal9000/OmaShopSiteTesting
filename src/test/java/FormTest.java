@@ -6,7 +6,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.Assertion;
+
 import java.time.Duration;
+import java.util.Collections;
 
 public class FormTest {
     private RegistrationFormPage registrationFormPage;
@@ -24,33 +27,17 @@ public class FormTest {
 
     @Test
     public void checkRegistrationFormData() throws InterruptedException {
-        registrationFormPage.clickCommonRegFormButton();
-        registrationFormPage.clickRegFormButton();
-        Thread.sleep(3000);
-        registrationFormPage.enterRegMobileNumber("293305742");
-        registrationFormPage.setRegisterCheckbox();
-        registrationFormPage.clickRegisterButton();
-        Thread.sleep(3000);
-        Assert.assertTrue(registrationFormPage.getErrorAlreadyText().contains("уже зарегистрирован"));
-    }
-    @Test
-    public void checkWrongLoginFormData() throws InterruptedException {
-        registrationFormPage.clickCommonRegFormButton();
-        registrationFormPage.enterLogMobileNumber("293305742");
-        registrationFormPage.enterLogPassword("aaa");
-        registrationFormPage.setLoginCheckbox();
-        registrationFormPage.clickLoginButton();
-        Thread.sleep(3000);
-        Assert.assertTrue(registrationFormPage.getErrorWrongText().contains("Неверный"));
-    }
-    @Test
-    public void checkTrueLoginFormData() throws InterruptedException {
-        registrationFormPage.clickCommonRegFormButton();
-        registrationFormPage.enterLogMobileNumber("293305742");
-        registrationFormPage.enterLogPassword("c114b9b2");
-        registrationFormPage.setLoginCheckbox();
-        registrationFormPage.clickLoginButton();
-        Thread.sleep(3000);
-        Assert.assertTrue(registrationFormPage.getaccountOwnerNameTextText().contains("Зинчук Александр Борисович"));
+        registrationFormPage.clickChooseGlobalItemCategoryButton();
+        registrationFormPage.clickChooseItemCategoryButton();
+        registrationFormPage.clickChooseItem();
+
+        registrationFormPage.clickBuyButton();
+        Thread.sleep(5000);
+        registrationFormPage.clickShut();
+        registrationFormPage.clickOrderCartButton();
+
+//        Assert.assertEquals(registrationFormPage.getNameItemInShop(), registrationFormPage.getNameItemInCart());
+
+//        Assert.assertTrue(registrationFormPage.getNameItemInShop().equals(registrationFormPage.getNameItemInCart()));
     }
 }

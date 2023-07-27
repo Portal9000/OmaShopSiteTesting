@@ -1,6 +1,5 @@
 package org.example.pages;
 
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,71 +8,35 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class RegistrationFormPage {
 
-    @FindBy(xpath = "//span[@class='icon icon__person']")
-    private WebElement commonRegisterFormButton;
-    @FindBy(xpath = "//button[@value='REGISTER']")
-    private WebElement registerFormButton;
-    @FindBy(xpath = "//div[@style=\"opacity: 1;\"]//input[@placeholder='+375 (__) ___-__-__']")
-    private WebElement mobileForRegisterField;
-    @FindBy(xpath = "//div[@style=\"opacity: 1;\"]//span[contains(@class, 'checkbox-visual')]")
-    private WebElement checkboxForRegister;
-    @FindBy(xpath = "//div[@style=\"opacity: 1;\"]//button[@name='SET_REGISTER']")
-    private WebElement registerButton;
-    @FindBy(xpath = "//div[@style=\"opacity: 1;\"]//p[contains(text(), 'уже заре')]")
-    WebElement errorAlreadyText;
+    @FindBy(xpath = "//a[@href=\"/interer-i-otdelka-c\"]")
+    private WebElement chooseGlobalItemCategory;
+    @FindBy(xpath = "//div[@data-items-visible='11']/a[@href=\"/laminat-c\"]")
+    private WebElement chooseItemCategory;
+    @FindBy(xpath = "//div[@id=\"data-ga__catalog-products-grid\"]/div[1]")
+    private WebElement chooseItem;
+    @FindBy(xpath = "//div[contains(@class, 'showNotInOrder')]/div[@class='count-and-btn_btn']")
+    private WebElement buyButton;
+    @FindBy(xpath = "//a[@id=\"composite-order-btn-smalcart\"]")
+    private WebElement orderCartButton;
+    @FindBy(xpath = "//*[@id=\"comp_6a4963e7e6441c8ef5595107e18d5831\"]/section/section[1]/div[1]/h1")
+    private WebElement nameItemInShop;
+    @FindBy(xpath = "//a[@class=\"basket-product-item_title js-broadcast-hover\"]")
+    private WebElement nameItemInCart;
 
-    @FindBy(xpath = "//input[@placeholder='+375 (__) ___-__-__']")
-    private WebElement mobileForLoginField;
-    @FindBy(xpath = "//input[@name='PASSWORD']")
-    private WebElement passwordForLoginField;
-    @FindBy(xpath = "//span[@class=\"checkbox-visual_icon icon icon__check\"]")
-    private WebElement checkboxForLogin;
-    @FindBy(xpath = "//button[@name=\"SET_LOGIN\"]")
-    private WebElement loginButton;
-    @FindBy(xpath = "//div[@style=\"opacity: 1;\"]//p[contains(text(), 'Неверный')]")
-    WebElement errorWrongText;
-    @FindBy(xpath = "//h2[@class=\"personal-user_name\"]")
-    WebElement accountOwnerNameText;
+    @FindBy(xpath = "//div[@class='backdrop-close']")
+    private WebElement shut;
 
     public RegistrationFormPage(WebDriver driver, WebDriverWait wait) {
         PageFactory.initElements(driver, this);
     }
-    public void clickCommonRegFormButton() { commonRegisterFormButton.click(); }
-    public void clickRegFormButton() {
-        registerFormButton.sendKeys(Keys.RETURN);
-    }
-    public void enterRegMobileNumber(String mobileNumber) {
-        mobileForRegisterField.sendKeys(mobileNumber);
-    }
-    public void setRegisterCheckbox() {
-        checkboxForRegister.click();
-    }
-    public void clickRegisterButton() {
-        registerButton.click();
-    }
-    public String getErrorAlreadyText() {
-        return errorAlreadyText.getText();
-    }
 
-    public void enterLogMobileNumber(String mobileNumber) {
-        mobileForLoginField.sendKeys(mobileNumber);
-    }
-    public void enterLogPassword(String password) {
-        passwordForLoginField.sendKeys(password);
-    }
-    public void setLoginCheckbox() {
-        checkboxForLogin.click();
-    }
-    public void clickLoginButton() {
-        loginButton.click();
-    }
-    public String getErrorWrongText() {
-        return errorWrongText.getText();
-    }
+    public void clickChooseGlobalItemCategoryButton() { chooseGlobalItemCategory.click(); }
+    public void clickChooseItemCategoryButton() { chooseItemCategory.click(); }
+    public void clickChooseItem() { chooseItem.click(); }
+    public void clickBuyButton() { buyButton.click(); }
+    public void clickOrderCartButton() { orderCartButton.click(); }
+    public String getNameItemInShop() { return nameItemInShop.getText(); }
+    public String getNameItemInCart() { return nameItemInCart.getText(); }
 
-    public String getaccountOwnerNameTextText() {
-        return accountOwnerNameText.getText();
-    }
-
-
+    public void clickShut() { shut.click(); }
 }
