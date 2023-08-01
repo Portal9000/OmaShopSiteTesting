@@ -7,7 +7,6 @@ import org.openqa.selenium.support.FindBy;
 public class ProductFormPage extends BasePage {
 
     protected WebDriver driver;
-
     @FindBy(xpath = "//a[@href=\"/interer-i-otdelka-c\"]")
     private WebElement globalItemCategory;
     @FindBy(xpath = "//div[@data-items-visible='11']/a[@href=\"/laminat-c\"]")
@@ -22,14 +21,12 @@ public class ProductFormPage extends BasePage {
     private WebElement nameItemInShop;
     @FindBy(xpath = "//a[@class=\"basket-product-item_title js-broadcast-hover\"]")
     private WebElement nameItemInCart;
-
-//    @FindBy(xpath = "//div[@class='backdrop-close']")
-//    private WebElement shut;
+    @FindBy(xpath = "//div[@class='backdrop-close']")
+    private WebElement shut;
 
     public ProductFormPage(WebDriver driver) {
         super(driver);
     }
-
     public WebElement chooseGlobalItemCategory() { return globalItemCategory; }
     public WebElement chooseItemCategory() { return itemCategory; }
     public WebElement chooseItem() { return item; }
@@ -37,5 +34,5 @@ public class ProductFormPage extends BasePage {
     public WebElement getOrderCartButton() { return orderCartButton; }
     public WebElement getNameItemInShop() { return nameItemInShop; }
     public WebElement getNameItemInCart() { return nameItemInCart; }
-//   public WebElement clickShut() { shut }
+    public WebElement clickShut() { return shut; }
 }

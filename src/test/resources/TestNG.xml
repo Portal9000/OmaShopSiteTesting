@@ -4,23 +4,23 @@
     <test name="SignInTest" parallel="false">
         <classes>
 
-<!--            <class name="RegistrationFormTest">-->
-<!--                <methods>-->
-<!--                    <include name="checkRegistrationFormData"/>-->
-<!--                </methods>-->
-<!--            </class>-->
-
-<!--            <class name="AuthorizationFormTest">-->
-<!--                <methods>-->
-<!--                    <include name="checkAuthorizationWithWrongPass"/>-->
-<!--                    <include name="checkTrueLoginFormData"/>-->
-<!--                    <include name="checkWrongNameFormData"/>-->
-<!--                </methods>-->
-<!--            </class>-->
+            <class name="RegistrationFormTest">
+                <methods>
+                    <include name="checkRegistrationFormData"/>
+                </methods>
+            </class>
 
             <class name="SendItemToCartTest">
                 <methods>
                     <include name="presenceGoodsInCart"/>
+                </methods>
+            </class>
+
+            <class name="AuthorizationFormTest">
+                <methods>
+                    <include name="checkAuthorizationWithWrongPass"/>
+                    <include name="checkTrueLoginFormData"/>
+                    <include name="checkWrongNameFormData"/>
                 </methods>
             </class>
 

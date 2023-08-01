@@ -1,13 +1,6 @@
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
-import io.qameta.allure.Link;
-import io.qameta.allure.Story;
 import org.example.driver.DriverManager;
-import org.example.models.UserData;
 import org.example.steps.AuthorizationFormSteps;
-import org.example.steps.RegistrationFormSteps;
 import org.example.utils.AllureListener;
-import org.example.utils.JsonReader;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;

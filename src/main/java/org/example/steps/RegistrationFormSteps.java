@@ -6,7 +6,6 @@ import org.example.pages.RegistrationFormPage;
 import org.example.utils.Waiters;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 
 @Log4j2
 public class RegistrationFormSteps {

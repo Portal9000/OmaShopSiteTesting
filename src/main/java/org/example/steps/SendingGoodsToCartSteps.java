@@ -17,7 +17,7 @@ public class SendingGoodsToCartSteps {
         productFormPage = new ProductFormPage(driver);
     }
 
-    @Test()
+    @Test(description = "Presence of goods in the cart")
     public void presenceGoodsInCart() throws InterruptedException {
         Waiters.waitForVisibility(productFormPage.chooseGlobalItemCategory());
         productFormPage.chooseGlobalItemCategory().click();
@@ -25,6 +25,8 @@ public class SendingGoodsToCartSteps {
         productFormPage.chooseItem().click();
         nameItemInShop = productFormPage.getNameItemInShop().getText();
         productFormPage.getBuyButton().click();
+        Thread.sleep(3000);
+        productFormPage.clickShut();
         productFormPage.getOrderCartButton().click();
         nameItemInCart =  productFormPage.getNameItemInCart().getText();
     }

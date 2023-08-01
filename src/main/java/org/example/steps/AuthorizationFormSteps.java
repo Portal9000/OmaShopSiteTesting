@@ -1,12 +1,11 @@
 package org.example.steps;
 
-        import io.qameta.allure.Step;
-        import lombok.extern.log4j.Log4j2;
-        import org.example.models.UserData;
-        import org.example.pages.AuthorizationFormPage;
-        import org.example.utils.Waiters;
-        import org.openqa.selenium.WebDriver;
-        import org.testng.annotations.Test;
+import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
+import org.example.pages.AuthorizationFormPage;
+import org.example.utils.Waiters;
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.Test;
 
 @Log4j2
 public class AuthorizationFormSteps {
